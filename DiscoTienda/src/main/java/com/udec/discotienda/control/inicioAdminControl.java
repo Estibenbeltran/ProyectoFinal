@@ -12,7 +12,7 @@ import javax.faces.context.FacesContext;
 
 /**
  * Clase controlar template del admin
- * @author ASUS
+ * @author dairo
  */
 @Named(value = "inicioAdminControl")
 @SessionScoped

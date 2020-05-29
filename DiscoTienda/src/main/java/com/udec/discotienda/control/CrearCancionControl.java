@@ -18,7 +18,7 @@ import javax.faces.context.FacesContext;
 
 /**
  * Clase crear cancion.
- * @author ASUS
+ * @author dairo
  */
 @Named(value = "crearCancionControl")
 @RequestScoped

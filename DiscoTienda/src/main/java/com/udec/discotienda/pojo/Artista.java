@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  * Clase artista
- * @author ASUS
+ * @author dairo
  */
 public class Artista {
     /**

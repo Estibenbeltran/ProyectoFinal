@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 /**
  * clase disco
- * @author ASUS
+ * @author dairo
  */
 public class DiscoModel {
          Connection conn = null; 

@@ -3,7 +3,7 @@ import java.sql.*;
 import java.sql.DriverManager; 
 /**
  * clase conexion base de datos
- * @author Cristian Perez
+ * @author dairo
  */
 public class ConectaBD {
    static Connection conexion=null;

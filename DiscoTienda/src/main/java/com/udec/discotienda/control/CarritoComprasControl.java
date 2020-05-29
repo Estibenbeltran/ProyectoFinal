@@ -22,7 +22,7 @@ import javax.faces.context.FacesContext;
 
 /**
  * clase carrito de compras
- * @author ASUS
+ * @author dairo
  */
 @Named(value = "carritoComprasControl")
 @SessionScoped

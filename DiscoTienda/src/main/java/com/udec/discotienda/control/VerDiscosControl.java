@@ -23,7 +23,7 @@ import org.primefaces.event.RowEditEvent;
 
 /**
  *Clase para administrar ver discos
- * @author ASUS
+ * @author dairo
  */
 @Named(value = "verDiscosControl")
 @RequestScoped

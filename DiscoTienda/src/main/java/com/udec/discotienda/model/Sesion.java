@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 /**
  * Clase sesion
- * @author ASUS
+ * @author dairo
  */
 public class Sesion implements Serializable{
     

@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author ASUS
+ * @author dairo
  */
 public class CancionCompra implements Serializable{
 

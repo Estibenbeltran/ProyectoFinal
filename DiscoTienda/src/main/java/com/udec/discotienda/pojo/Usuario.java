@@ -7,7 +7,7 @@ package com.udec.discotienda.pojo;
 
 /**
  *
- * @author ASUS
+ * @author dairo
  */
 public class Usuario {
     private int id;

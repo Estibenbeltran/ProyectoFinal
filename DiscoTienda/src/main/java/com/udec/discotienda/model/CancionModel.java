@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 /**
  * clase cancion
- * @author ASUS
+ * @author dairo
  */
 public class CancionModel {
          Connection conn = null; 

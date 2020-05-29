@@ -7,7 +7,7 @@ package com.udec.discotienda.pojo;
 
 /**
  *Clase disco
- * @author ASUS
+ * @author dairo
  */
 public class Disco {
     /**

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 /**
  * Clase artista
- * @author ASUS
+ * @author dairo
  */
 public class ArtistaModel {
     /**

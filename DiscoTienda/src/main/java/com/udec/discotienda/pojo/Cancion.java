@@ -7,7 +7,7 @@ package com.udec.discotienda.pojo;
 
 /**
  *  Clase cancion
- * @author ASUS
+ * @author dairo
  */
 public class Cancion {
     /**

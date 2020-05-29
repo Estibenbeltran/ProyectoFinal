@@ -25,7 +25,7 @@ import org.primefaces.event.RowEditEvent;
 
 /**
  * Clase ver artistas
- * @author ASUS
+ * @author dairo
  */
 @Named(value = "verArtistasControl")
 @SessionScoped

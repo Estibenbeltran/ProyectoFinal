@@ -24,7 +24,7 @@ import org.primefaces.event.RowEditEvent;
 
 /**
  * Clase para administrar ver canciones
- * @author ASUS
+ * @author dairo
  */
 @Named(value = "verCancionesControl")
 @RequestScoped

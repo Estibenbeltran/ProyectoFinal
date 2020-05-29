@@ -28,7 +28,7 @@ import org.primefaces.model.UploadedFile;
 
 /**
  * Clase crear cancion
- * @author ASUS
+ * @author dairo
  */
 @Named(value = "crearDiscoControl")
 @RequestScoped

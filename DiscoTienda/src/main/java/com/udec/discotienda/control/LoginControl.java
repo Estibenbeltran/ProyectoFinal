@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * Clase para controlar el login
- * @author ASUS
+ * @author dairo
  */
 @Named(value = "loginControl")
 @SessionScoped

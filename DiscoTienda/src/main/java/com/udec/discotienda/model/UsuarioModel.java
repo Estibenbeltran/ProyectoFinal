@@ -12,7 +12,7 @@ import java.sql.Statement;
 
 /**
  * clase usuario
- * @author ASUS
+ * @author dairo
  */
 public class UsuarioModel {
          Connection conn = null; 

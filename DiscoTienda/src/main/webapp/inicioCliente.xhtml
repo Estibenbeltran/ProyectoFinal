@@ -18,9 +18,10 @@
         <div id="top">
             <ui:insert name="top">
                  <div id="titulo">
-                        <p:outputLabel  value="Discotienda UDEC"/>
+                        <p:outputLabel  value="Apartado del Cliente" />
                     </div>
                     <div id="menu">
+                        <p:outputLabel value="#{ms.cli}" style=" color: white;" />
                         <p:commandButton value="#{ms.cerrarsesion}" action="#{inicioClienteControl.cerrarSesion()}" styleClass="ui-priority-primary" style="margin-left: 10%; "/>   
                     </div>
                 
@@ -28,7 +29,7 @@
         </div>
         </h:form>
 
-        <div id="content" class="center_content" style="background-image: url(resources/imagenes/imgfondo2.jpg); background-size: cover;">
+        <div id="content" class="center_content" style="background-image: url(resources/imagenes/dj.jpg); background-size: cover;">
            <h:panelGroup layout="block" id="contenido" style="background-color: rgba(0,0,0,0);">
                         <ui:insert name="content">
                             <ui:include src="#{inicioClienteControl.seleccionado}">
@@ -37,13 +38,6 @@
                 </h:panelGroup>
         </div>
 
-        <div id="bottom">
-            <ui:insert name="bottom">
-                <div style="width: 50%; margin: auto; text-align: center; padding-top: 1%;">
-                    <small><h:outputText value="Cristian Camilo Pérez - Julian Arias  2019. #{ms.derechos}"/></small>
-                </div>
-            </ui:insert>
-        </div>
 
     </h:body>
 

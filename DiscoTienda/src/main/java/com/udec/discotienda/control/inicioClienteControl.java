@@ -12,7 +12,7 @@ import javax.faces.context.FacesContext;
 
 /**
  * Clase para administrar template cliente
- * @author ASUS
+ * @author dairo
  */
 @Named(value = "inicioClienteControl")
 @SessionScoped

@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Clase para administrar crear artista
- * @author ASUS
+ * @author dairo
  */
 @Named(value = "crearArtistaControl")
 @RequestScoped
