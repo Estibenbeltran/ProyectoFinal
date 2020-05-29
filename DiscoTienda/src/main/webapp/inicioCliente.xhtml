@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/cssLayoutCliente.css"/>
+        <title>Inicio Cliente</title>
+        <f:event type="preRenderView" listener="#{loginControl.validarPermisoCliente}" />
+    </h:head>
+
+    <h:body>
+        <h:form>
+        <div id="top">
+            <ui:insert name="top">
+                 <div id="titulo">
+                        <p:outputLabel  value="Discotienda UDEC"/>
+                    </div>
+                    <div id="menu">
+                        <p:commandButton value="#{ms.cerrarsesion}" action="#{inicioClienteControl.cerrarSesion()}" styleClass="ui-priority-primary" style="margin-left: 10%; "/>   
+                    </div>
+                
+            </ui:insert>
+        </div>
+        </h:form>
+
+        <div id="content" class="center_content" style="background-image: url(resources/imagenes/imgfondo2.jpg); background-size: cover;">
+           <h:panelGroup layout="block" id="contenido" style="background-color: rgba(0,0,0,0);">
+                        <ui:insert name="content">
+                            <ui:include src="#{inicioClienteControl.seleccionado}">
+                            </ui:include>        
+                        </ui:insert>
+                </h:panelGroup>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom">
+                <div style="width: 50%; margin: auto; text-align: center; padding-top: 1%;">
+                    <small><h:outputText value="Cristian Camilo Pérez - Julian Arias  2019. #{ms.derechos}"/></small>
+                </div>
+            </ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

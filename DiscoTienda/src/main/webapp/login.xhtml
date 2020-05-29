@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Login</title>
+    </h:head>
+    <h:body id="body" style="background-image: url(resources/imagenes/dj.jpg); 
+        background-repeat: no-repeat;
+     background-size: 1366px 700px;
+     overflow-x: hidden;">
+        <h:form>
+            <h:panelGroup layout="block" style="padding-top: 1%; font-size: 13px;">
+                <p:outputLabel  value="#{ms.idioma}" style="color: whitesmoke; margin-left: 2%;"/>  
+            <p:selectOneMenu style="margin-left: 5px; font-size: 12px;" value="#{loginControl.localidad}" 
+                                 onchange="submit()"                                 
+                                 valueChangeListener="#{loginControl.localidadChanged}"> 
+                <f:selectItems value="#{loginControl.listaPaises}"  />   
+                </p:selectOneMenu>
+            </h:panelGroup>
+            
+        <div style=" margin-top: 3%; text-align: center; font-size: 1.2em; color: whitesmoke;">
+            <h1>#{ms.bienvenido}</h1>
+        </div>
+        <div style=" text-align: center; font-size: 1.2em; color: whitesmoke; margin-top: -25px;">
+            <h3>#{ms.slogan}</h3>
+        </div>
+            <p:growl id="msg" showDetail="true" />
+            <h:panelGroup id="login" layout="block" style="width: 40%; height: 285px; margin: auto; margin-top: 5%; border: 5px solid white;"> 
+                <h:panelGroup id="loginp1" layout="block" style="  background-color: #292C2E; height: 4%; padding: 4%;">
+                    <p:outputLabel id="ing" value="#{ms.login}" style="font:bold 15px Century Gothic ; color: white;"/>
+                </h:panelGroup>
+                <h:panelGroup id="loginp2" layout="block" style=" background-color: white; height: 78%; padding-top: 2%;">
+                    <h:panelGrid id="loginp3" columns="2" cellspacing="1" cellpadding="10" style="margin: auto;">
+                        <p:outputLabel value="#{ms.usuario}"/>
+                    <p:inputText id="usuario" value="#{loginControl.usuario}"/>
+                    <p:outputLabel value="#{ms.contrasena}"/>
+                    <p:password id="pss" value="#{loginControl.contrasena}" />
+                    <p:outputLabel/>
+                    <p:commandButton id="botonIng" value="#{ms.ingresar}" action="#{loginControl.iniciarSesion}" update="msg" style=" width: 60%;"/>
+                </h:panelGrid>
+                    <h:panelGroup id="login4" layout="block" style="margin-top: 1%; padding-top: 2%; height: 15%; background-color: #236ABF;">
+                        <p:commandLink id="botonReg" value="#{ms.registrate}" onclick="PF('dlg2').show();" style="width: 100%; height: 80%; margin-left: 25%; color: white;">
+                        </p:commandLink>
+            </h:panelGroup> 
+            </h:panelGroup>
+        </h:panelGroup>
+            
+            <p:dialog id="regdiag" header="#{ms.registratef}" widgetVar="dlg2" modal="true">
+                
+                <h:panelGrid id="grid" columns="3" cellspacing="5" cellpadding="10" style="margin: auto;">
+                    
+                    <p:outputLabel  value="#{ms.nombrecomple}"/>
+                    <p:inputText id="nom" value="#{loginControl.nombre}"  label="Nombre*" style="width:95% "></p:inputText>
+                    <p:message for="nom"/>
+                    
+                    <p:outputLabel  value="#{ms.cedula}"/>
+                     <p:inputText id="ced" value="#{loginControl.cedula}"  label="Cedula*" style="width:95% "></p:inputText>
+                    <p:message for="ced"/>
+                    
+                    <p:outputLabel  value="#{ms.usuario}"/>
+                     <p:inputText id="usu" value="#{loginControl.usernuevo}"  label="Cedula*" style="width:95% "></p:inputText>
+                    <p:message for="usu"/>
+                    
+                    <p:outputLabel  value="#{ms.contrasena}"/>
+                     <p:password id="contra" value="#{loginControl.clave}" />
+                    <p:message for="contra"/>
+                </h:panelGrid>
+                <br></br>
+                <p:commandButton value="#{ms.registrarse}" type="Button" icon="ui-icon-check" action="#{loginControl.registrarNuevoUsuario()}"
+                                 update="msg regdiag" style="margin-left: 35%;"/>
+                
+                </p:dialog>
+        </h:form>
+    </h:body>
+</html>
+

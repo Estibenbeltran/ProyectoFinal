@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Inicio administrador</title>
+        <f:event type="preRenderView" listener="#{loginControl.validarPermisoAdmin}" />
+    </h:head>
+
+    <h:body>
+        <h:form id="form1">
+        <div id="top">
+            <ui:insert name="top">
+                <div id="titulo">
+                        <p:outputLabel  value="Apartado del Administrador"/>
+                    </div>
+                    <div id="menu">         
+                        <p:outputLabel value="#{ms.admin}" style=" color: white;" />
+                        <p:commandButton value="#{ms.cerrarsesion}" action="#{inicioAdminControl.cerrarSesion()}" styleClass="ui-priority-primary" style="margin-left: 10%; "/>       
+                    </div>
+              
+            </ui:insert>
+        </div>
+       </h:form>
+        
+        <div>
+            <h:form id="form2">
+            <div id="left">   
+                
+                <ui:insert name="left">
+                    
+                    <h:panelGrid id="grid1" columns="1" cellpadding="5" style=" width:100%;  ">
+                        <p:commandButton  id="Cartista" value="#{ms.cartista}" actionListener="#{inicioAdminControl.cartista()}" update="contenido" styleClass="ui-priority-primary" style="width: 100%; font-size: 80%;" />
+                        <p:commandButton  id="Cdisco" value="#{ms.cdisco}" actionListener="#{inicioAdminControl.cdisco()}" update="contenido" styleClass="ui-priority-primary" style="width: 100%; font-size: 80%;" />
+                        <p:commandButton  id="Ccancion" value="#{ms.ccancion}" actionListener="#{inicioAdminControl.ccancion()}" update="contenido" styleClass="ui-priority-primary" style="width: 100%; font-size: 80%;"/> 
+                    </h:panelGrid>
+                    <h:panelGrid id="grid2" columns="1" cellpadding="5" style=" width:100%; margin-top: 10%; ">
+                        <p:commandButton id="verArtistas"  value="#{ms.vartistas}" actionListener="#{inicioAdminControl.vartistas()}" update="contenido" style="width: 100%; font-size: 80%;"/>
+                        <p:commandButton id="verDiscos" value="#{ms.vdiscos}" actionListener="#{inicioAdminControl.vdiscos()}" update="contenido" style="width: 100%; font-size: 80%;"/>
+                        <p:commandButton id="verCanciones" value="#{ms.vcanciones}" actionListener="#{inicioAdminControl.vcanciones()}" update="contenido" style="width: 100%; font-size: 80%;"/>
+                    </h:panelGrid>
+                    
+         
+                </ui:insert>
+                
+            </div>
+            </h:form>
+        
+            <div id="content" class="left_content" style="background-image: url(resources/imagenes/dj.jpg); background-size: cover;">
+                <h:panelGroup layout="block" id="contenido" style="background-color: rgba(0,0,0,0);">
+                        <ui:insert name="content">
+                            <ui:include src="#{inicioAdminControl.seleccion}">
+                            </ui:include>        
+                        </ui:insert>
+                </h:panelGroup>         
+            </div>
+            
+            
+        </div>
+          <h:form>  
+        <!-- <div id="bottom">
+            
+           <ui:insert name="bottom">
+                <div style="width: 50%; margin: auto; text-align: center; padding-top: 1%;">
+                    <small><h:outputText value="Dairo Beltran #{ms.derechos}"/></small>
+                </div>
+            </ui:insert>
+           
+        </div>-->
+        </h:form>
+    </h:body>
+
+</html>
