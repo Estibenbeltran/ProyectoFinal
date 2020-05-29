@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Ver Artistas</title>
+    </h:head>
+    <h:body >
+        <h:form id="form">
+        <h:panelGroup layout="block" style="text-align: center; color: whitesmoke;">
+            <h1> #{ms.artistas}</h1>
+        </h:panelGroup>     
+            <p:growl id="msgs" showDetail="true"/>
+            <h:panelGroup id="panel" layout="block">
+                <p:dataTable id="dtartista" var="artis" value="#{verArtistasControl.artistas}" 
+                             editable="true"
+                             widgetVar="DTartistas"  
+                             style="width: 90%; margin: auto; font-size: 15px;"
+                             rows="5"
+                             paginator="true"
+                             paginatorPosition="bottom"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15" 
+                             emptyMessage="No se han encontrado registros"
+                             filteredValue="#{verArtistasControl.artistasFiltrados}">
+                  
+                    <p:ajax event="rowEdit" listener="#{verArtistasControl.onRowEdit}" update=":form:msgs"/>
+                    <p:ajax event="rowEditCancel" listener="#{verArtistasControl.onRowCancel}" update=":form:msgs"/>
+
+                    <p:column headerText="Id" style="width: 5%;">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{artis.id}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{artis.id}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column filterBy="#{artis.nombre}" headerText="#{ms.nombre}" filterMatchMode="contains">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{artis.nombre}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{artis.nombre}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column><font></font>
+                    <p:column filterBy="#{artis.apellido}" headerText="#{ms.apellido}" filterMatchMode="contains">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{artis.apellido}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{artis.apellido}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column><font></font>
+                    <p:column filterBy="#{artis.fechanacimiento}" headerText="#{ms.fechanac}">
+                        <f:facet name="filter">
+                            <p:spinner onchange="PF('DTartistas').filter()" styleClass="year-spinner custom-filter">
+                                <f:converter converterId="javax.faces.Integer" />
+                            </p:spinner>
+                        </f:facet>
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{artis.fecha}"></h:outputText></f:facet>
+                            <f:facet name="input">
+                                <p:calendar value="#{artis.fechanacimiento}" pattern="yyyy-MM-dd" style="width:100%"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column><font></font>
+                    
+                    <p:column filterBy="#{artis.nacionalidad}" headerText="#{ms.nacionalidad}" filterMatchMode="contains">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{artis.nacionalidad}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{artis.nacionalidad}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column><font></font>
+            
+                    <p:column headerText="#{ms.editar}" style="width: 10%;">
+                        <p:rowEditor />
+                    </p:column><font></font>
+                    <p:column headerText="#{ms.eliminar}" style="width: 10%;">
+                        <p:selectBooleanCheckbox value="#{artis.seleccion}"/>
+                    </p:column><font></font>
+                </p:dataTable>
+                <br></br><br></br>
+                  <h:panelGroup id="panel2">
+                      <p:commandButton id="eli" value="#{ms.eliminar}" actionListener="#{verArtistasControl.eliminar()}" 
+                                     update="panel msgs"
+                                     icon="ui-icon-trash"  rendered="#{verArtistasControl.artistas.size()>0 eq true}" style="margin-left: 75%;">
+                          <p:confirm message="#{ms.seguroeliminar}" header="#{ms.aviso}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </h:panelGroup>
+                
+                <p:confirmDialog global="true">
+                    <p:commandButton value="#{ms.si}" type="Button" icon="ui-icon-check"
+                                 styleClass="ui-confirmdialog-yes"/>
+                    <p:commandButton value="#{ms.no}" type="Button" icon="ui-icon-close"
+                                     styleClass="ui-confirmdialog-no"/>
+                </p:confirmDialog>
+            </h:panelGroup>       
+        </h:form>
+    </h:body>
+</html>
+

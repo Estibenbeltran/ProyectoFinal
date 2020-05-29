@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Ver Discos</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+        <h:panelGroup layout="block" style="text-align: center; color: whitesmoke;">
+            <h1> #{ms.discos}</h1>
+        </h:panelGroup>
+            <p:growl id="msgs" showDetail="true"/>
+            <h:panelGroup id="panel" layout="block" style="padding: 1%;">
+                <p:dataTable id="dtDisco" var="dis" value="#{verDiscosControl.discos}" editable="true" widgetVar="DTdiscos"  
+                             style="width: 90%; margin: auto; font-size: 15px;"
+                             rows="5"
+                             paginator="true"
+                             paginatorPosition="bottom"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15" 
+                             emptyMessage="No se han encontrado registros"
+                             filteredValue="#{verDiscosControl.discosFiltrados}">
+                    <font></font>
+                    <p:ajax event="rowEdit" listener="#{verDiscosControl.onRowEdit}" update=":form:msgs" />
+                    <p:ajax event="rowEditCancel" listener="#{verDiscosControl.onRowCancel}" update=":form:msgs" />
+
+                    <p:column headerText="Id" style="width: 5%;">
+                        <p:outputLabel value="#{dis.id}"/>
+                    </p:column>
+
+                    <p:column headerText="#{ms.caratula}" style="width: 15%;">
+                        <img src="#{dis.caratula}" alt="" style="width: 100px; height: 100px;"/>
+                    </p:column><font></font>
+                    <font></font>
+
+                    <p:column filterBy="#{dis.nombre}" headerText="#{ms.nombre}" filterMatchMode="contains">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{dis.nombre}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{dis.nombre}" style="width:100%" /></f:facet>
+                        </p:cellEditor>
+                    </p:column><font></font>
+                    <font></font>
+                    <p:column filterBy="#{dis.nombreArtista}" headerText="#{ms.artista}">
+                        <f:facet name="filter">
+                            <p:selectOneMenu onchange="PF('DTdiscos').filter()" styleClass="custom-filter" style="width: 80%;">
+                                <f:selectItem itemLabel="Selecciona" itemValue="#{null}" noSelectionOption="true" />
+                                <f:selectItems  value="#{verDiscosControl.nomArtistas}"/>
+                            </p:selectOneMenu>
+                        </f:facet>
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{dis.nombreArtista}" /></f:facet>
+                            <f:facet name="input">
+                                <h:selectOneMenu value="#{dis.nombreArtista}" style="width:100%">
+                                    <f:selectItems value="#{verDiscosControl.nomArtistas}" />
+                                </h:selectOneMenu>
+                            </f:facet>
+                        </p:cellEditor>
+
+                    </p:column><font></font>
+                    <p:column headerText="#{ms.editar}" style="width: 10%;">
+                        <p:rowEditor />
+                    </p:column><font></font>
+                    <p:column headerText="#{ms.eliminar}" style="width: 10%;">
+                        <p:selectBooleanCheckbox value="#{dis.seleccion}"/>
+                    </p:column><font></font>
+                </p:dataTable>
+                <br></br>
+                <h:panelGroup id="panel2">
+                    <p:commandButton id="eli" value="#{ms.eliminar}" actionListener="#{verDiscosControl.eliminar()}" 
+                                     update="panel msgs"
+                                     rendered="#{verDiscosControl.discos.size()>0 eq true}"
+                                     icon="ui-icon-trash"  style="margin-left: 75%;">
+                        <p:confirm message="#{ms.seguroeliminar}" header="#{ms.aviso}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:message for="eli"/>
+                </h:panelGroup>
+                
+                <p:confirmDialog global="true">
+                    <p:commandButton value="#{ms.si}" type="Button" icon="ui-icon-check"
+                                 styleClass="ui-confirmdialog-yes"/>
+                    <p:commandButton value="#{ms.no}" type="Button" icon="ui-icon-close"
+                                     styleClass="ui-confirmdialog-no"/>
+                </p:confirmDialog>
+            </h:panelGroup>   
+        </h:form>
+    </h:body>
+</html>
+
