@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Crear Artista</title>
+    </h:head>
+    <h:body >
+        <h:panelGroup layout="block" style="text-align: center; color: whitesmoke;">
+            <h1>#{ms.cartista}</h1>
+        </h:panelGroup>
+        <h:form>
+            <h:panelGroup id="panel" layout="block" style="border: 2px solid black; width: 60%; padding: 1%; margin: auto; margin-top: 5%; background-color: white; border-radius: 2%;">
+                <h:panelGrid id="grid" columns="3" cellspacing="5" cellpadding="10" style="margin: auto;">
+                    
+                    <p:outputLabel  value="#{ms.nombre}"/>
+                    <p:inputText id="nom" value="#{crearArtistaControl.nombre}" required="true" label="Nombre*" style="width:95% "></p:inputText>
+                    <p:message for="nom"/>
+                    
+                    <p:outputLabel  value="#{ms.apellido}"/>
+                     <p:inputText id="apel" value="#{crearArtistaControl.apellido}" required="true" label="Apellido*" style="width:95% "></p:inputText>
+                    <p:message for="apel"/>
+                    
+                    <p:outputLabel  value="#{ms.fechanac}"/>
+                     <p:calendar id="fnac" value="#{crearArtistaControl.fechanacimiento}"  showOn="button" pattern="yyyy-MM-dd" yearRange="1960:2019" required="true"/>
+                    <p:message for="fnac"/>
+                    
+                    <p:outputLabel  value="#{ms.nacionalidad}"/>
+                     <p:inputText id="nacion" value="#{crearArtistaControl.nacionalidad}" required="true" label="Nacionalidad*" style="width:95% "></p:inputText>
+                    <p:message for="nacion"/>
+                    
+                </h:panelGrid>
+                <br></br>
+                <p:commandButton id="add" actionListener="#{crearArtistaControl.crearArtista()}" update="panel messages" value="#{ms.agregar}" style="margin-left:45%; width: 30%;"/>
+                <p:growl id="messages" showDetail="true" />
+        </h:panelGroup>
+       </h:form>
+    </h:body>
+</html>
+
