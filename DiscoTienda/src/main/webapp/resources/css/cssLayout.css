@@ -1,0 +1,54 @@
+body{
+    background-color: #2E4053 ;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+#top {
+    position: absolute;
+    top: 0; left: 0;
+    background-color: #036fab;
+    color: white;
+    height:5%;
+    padding:2%;
+    width: 100%;
+}
+#titulo{
+    font:bold 2em Century Gothic;
+    float: left;
+}
+#menu{
+    margin-left: 70%;
+    padding-top: 0.5%;
+    font-size: 0.85em;
+}
+
+#left {
+    position: fixed;
+    clear: both;
+    width: 14.4%;
+    left: 0;
+    float: left;
+    background-color:  #28485D;
+    padding: 2%;
+    margin-top: 30px;
+}
+#content{
+    position: relative;
+    min-height: 500px;
+    background-color: #dddddd;
+    padding: 5px;
+    margin-left: 18%;
+    margin-top: 87px;
+}
+
+
+#bottom {
+   position: absolute;
+   clear:both;
+   left: 0; right: 0;
+   background-color: #292C2E;
+   color:grey;
+   height: 60px;
+}

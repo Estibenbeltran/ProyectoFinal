@@ -1,0 +1,56 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16/11/2019, 10:00:01 AM
+    Author     : ASUS
+*/
+body{
+    background-color: #28485D;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+#top {
+    position: absolute;
+    top: 0; left: 0;
+    background-color: #EC8E0D;
+    color: white;
+    height:5%;
+    padding:2%;
+    width: 100%;
+    
+}
+#titulo{
+    font:bold 2em Century Gothic;
+    float: left;
+}
+
+#menu{
+    margin-left: 80%;
+    padding-top: 0.5%;
+    font-size: 0.85em;
+}
+
+
+#content{
+    position: relative;
+    min-height: 500px;
+    background-color: #dddddd;
+    padding: 5px;
+    margin-top: 6.5%;
+    margin-left: -10px;
+}
+
+
+#bottom {
+   position: absolute;
+   clear:both;
+   left: 0; right: 0;
+   background-color: #292C2E;
+   color:grey;
+   height: 60px;
+}
