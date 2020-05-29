@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Ver Canción</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+        <h:panelGroup layout="block" style="text-align: center; color: whitesmoke;">
+            <h1>#{ms.canciones}</h1>
+        </h:panelGroup>
+            <p:growl id="msgs" showDetail="true"/>
+            <h:panelGroup id="panel" layout="block">
+                <p:dataTable id="dtcancion" var="can" value="#{verCancionesControl.canciones}" editable="true" widgetVar="DTcanciones"  
+                             style="width: 90%; margin: auto; font-size: 15px;"
+                             rows="5"
+                             paginator="true"
+                             paginatorPosition="bottom"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15" 
+                             emptyMessage="No se han encontrado registros"
+                             filteredValue="#{verCancionesControl.cancionFiltro}">
+                    <font></font>
+                    <p:ajax event="rowEdit" listener="#{verCancionesControl.onRowEdit}" update=":form:msgs" />
+                    <p:ajax event="rowEditCancel" listener="#{verCancionesControl.onRowCancel}" update=":form:msgs" />
+
+                    <p:column headerText="Id" style="width: 5%;">
+                        <p:outputLabel value="#{can.idCancion}"/>
+                    </p:column>
+
+                    <p:column filterBy="#{can.nombre}" headerText="#{ms.nombre}" filterMatchMode="contains">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{can.nombre}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{can.nombre}" style="width:100%" label="Apellido"/></f:facet>
+                        </p:cellEditor>
+                    </p:column><font></font>
+                    <font></font>
+                    <p:column filterBy="#{can.duracion}" headerText="#{ms.duracion}" filterFunction="#{verCancionesControl.filterNum}">
+                         <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{can.duracion}" /> </f:facet>
+                            <f:facet name="input"><p:inputText value="#{can.duracion}" style="width:100%" label="Apellido"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column filterBy="#{can.nombreDisco}" headerText="#{ms.disco}">
+                        <f:facet name="filter">
+                            <p:selectOneMenu onchange="PF('DTcanciones').filter()" styleClass="custom-filter" style="width: 80%;">
+                                <f:selectItem itemLabel="#{ms.selecciona}" itemValue="#{null}" noSelectionOption="true" />
+                                <f:selectItems  value="#{verCancionesControl.nomDiscos}"/>
+                            </p:selectOneMenu>
+                        </f:facet>
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{can.nombreDisco}" /></f:facet>
+                            <f:facet name="input">
+                                <h:selectOneMenu value="#{can.nombreDisco}" style="width:100%">
+                                    <f:selectItems value="#{verCancionesControl.nomDiscos}" />
+                                </h:selectOneMenu>
+                            </f:facet>
+                        </p:cellEditor>
+
+                    </p:column><font></font>
+                    
+                    <p:column filterBy="#{can.precio}" headerText="#{ms.precio}" filterFunction="#{verCancionesControl.filterNum}">
+                         <p:cellEditor>
+                             <f:facet name="output"><h:outputText value="#{can.precio}"> <f:convertNumber currencySymbol="$" type="currency"/> </h:outputText> </f:facet>
+                             <f:facet name="input"><p:inputText value="#{can.precio}" style="width:100%" label="Apellido"><f:convertNumber currencySymbol="$" type="currency"/></p:inputText> </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <font></font>
+                    <p:column headerText="#{ms.editar}" style="width: 10%;">
+                        <p:rowEditor />
+                    </p:column><font></font>
+                    <p:column headerText="#{ms.eliminar}" style="width: 10%;">
+                        <p:selectBooleanCheckbox value="#{can.seleccion}"/>
+                    </p:column><font></font>
+                </p:dataTable>
+                 <br></br>
+                <h:panelGroup id="panel2">
+                    <p:commandButton id="eli" value="#{ms.eliminar}" actionListener="#{verCancionesControl.eliminar()}" 
+                                     update="panel msgs"
+                                     icon="ui-icon-trash"  rendered="#{verCancionesControl.canciones.size()>0 eq true}" style="margin-left: 75%;">
+                        <p:confirm message="#{ms.seguroeliminar}" header="#{ms.aviso}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </h:panelGroup>
+                
+                <p:confirmDialog global="true">
+                                 <p:commandButton value="#{ms.si}" type="Button" icon="ui-icon-check"
+                                 styleClass="ui-confirmdialog-yes"/>
+                                 <p:commandButton value="#{ms.no}" type="Button" icon="ui-icon-close"
+                                     styleClass="ui-confirmdialog-no"/>
+                </p:confirmDialog>
+
+            </h:panelGroup>
+            
+        </h:form>
+    </h:body>
+</html>
+
